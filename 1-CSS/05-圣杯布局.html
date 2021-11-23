@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+    header,
+    footer {
+      background: gold;
+      text-align: center;
+    }
+
+    .content {
+      background: skyblue;
+      width: 100%;
+    }
+
+    .left {
+      background: pink;
+      width: 200px;
+      margin-left: calc(-100% - 200px);
+      /* 因为content的width为100%，此时left在content后面，设置margin-left：-100%， 将left移到和content起点相同 */
+      /* position: relative;
+      margin-left: -100%;
+      left: -200px; */
+    }
+
+    .right {
+      background: purple;
+      width: 150px;
+      margin-right: -150px;
+      /* margin-right等于负自身宽度，相当于宽度变为0，而content的width为100%，所以会把right给挤到container外面，
+      但是container的padding-right和right宽度相同,所以又回到了container里面 */
+    }
+
+    .column {
+      float: left;
+    }
+
+    .container {
+      padding-left: 200px;
+      padding-right: 150px;
+      border: 2px solid red;
+    }
+
+    .clearfix:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+  </style>
+</head>
+
+<body>
+  <header>header</header>
+  <div class="container clearfix">
+    <div class="content column">center</div>
+    <div class="left column">left</div>
+    <div class="right column">right</div>
+  </div>
+  <footer>footer</footer>
+</body>
+
+</html>
