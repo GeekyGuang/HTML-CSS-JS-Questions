@@ -4,6 +4,7 @@
 // const p2 = Promise.reject(new Error('err'))
 // p2.then(null, () => console.log('then err')).catch((err) => console.error(err))
 
+/* then 和 catch状态变化 */
 const p1 = Promise.resolve().then(() => {
   return 100
 })
@@ -25,3 +26,16 @@ const p4 = Promise.reject('err').catch(() => {
 })
 
 console.log('p4', p4) // rejected
+
+// 习题
+Promise.resolve()
+  .then(() => {
+    console.log(1)
+    throw new Error('error1')
+  })
+  .catch(() => {
+    console.log(2)
+  })
+  .catch(() => {
+    console.log(3)
+  })
