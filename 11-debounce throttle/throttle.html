@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .div {
+      width: 50px;
+      height: 50px;
+      border: 1px solid;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="div" draggable="true"></div>
+  <script>
+    const div = document.querySelector('.div')
+    function throttle(fn, delay = 100) {
+      let timer = null
+      return function () {
+        const context = this
+        if (timer) {
+          return
+        }
+        timer = setTimeout(() => {
+          fn.apply(context, arguments)
+          timer = null
+        }, delay)
+      }
+    }
+    div.addEventListener('drag', throttle((e) => {
+      console.log(e.offsetX, e.offsetY)
+    }))
+  </script>
+</body>
+
+</html>
